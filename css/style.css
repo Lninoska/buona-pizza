@@ -1,0 +1,14 @@
+
+body {
+background: linear-gradient(to right, green, red);
+min-height: 100vh;
+padding: 20px;
+}
+.container-custom {
+background-color: white;
+border-radius: 8px;
+padding: 20px;
+}
+.checkbox-label {
+display: block;
+}

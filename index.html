@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUONA PIZZA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row container-custom">
+            <div class="col-md-6">
+                <h5>MEJORA TU PIZZA</h5>
+                <p>Puedes elegir 3 ingredientes gratis. Cada ingrediente adicional cuesta $800 pesos cada uno.</p>
+                <h6>Ingredientes disponibles para agregar a su pizza:</h6>
+                <form id="form">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="carne" value="Carne">
+                        <label class="form-check-label" for="carne">Carne</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="pollo" value="Pollo">
+                        <label class="form-check-label" for="pollo">Pollo</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="tocino" value="Tocino">
+                        <label class="form-check-label" for="tocino">Tocino</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="mozzarella" value="Mozzarella">
+                        <label class="form-check-label" for="mozzarella">Mozzarella</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="champiñon" value="Champiñón">
+                        <label class="form-check-label" for="champiñon">Champiñón</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="cebolla" value="Cebolla">
+                        <label class="form-check-label" for="cebolla">Cebolla</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="piña" value="Piña">
+                        <label class="form-check-label" for="piña">Piña</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="pimenton" value="Pimentón">
+                        <label class="form-check-label" for="pimenton">Pimentón</label>
+                    </div>
+                </form>
+                <p><strong>Los ingredientes seleccionados son:</strong></p>
+                <p id="ingredientesselecionados"></p>
+                <p><strong>Los ingredientes extras seleccionados son:</strong></p>
+                <p id="ingredientesextras"></p>
+            </div>
+            <div class="col-md-6">
+                <h5>RESUMEN DEL PEDIDO</h5>
+                <div class="mb-3">
+                    <p><strong>Pizza XL</strong> <span class="float-end">$15.000</span></p>
+                </div>
+                <p><strong>Ingredientes Extras</strong></p>
+                <p id="totalextras"></p>
+                <input type="text" class="form-control mb-3" placeholder="Propina" id="propina" value="0">
+                <p id="total"><strong>Total:</strong></p>
+                <button class="btn btn-dark w-100">Enviar Pedido con Propina</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/index.js"></script>
+</body>
+</html>
