@@ -41,6 +41,7 @@ function updateIngredientes(maximoIngredientes = 3, costoIngredienteExtra = 800,
 }
 
 document.getElementById('propinaTexto').addEventListener('input', () => updateIngredientes(3, 800, 15000, 1000));
+
 document.getElementById('botonpropina').addEventListener('click', () => {
     const propinaInput = document.getElementById('propinaTexto');
     if (!propinaInput.value || parseFloat(propinaInput.value) === 0) {
