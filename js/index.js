@@ -1,61 +1,52 @@
 const checkboxes = document.querySelectorAll('#form .form-check-input');
-for (let i = 0; i < checkboxes.length; i++) {
-    checkboxes[i].addEventListener('change', updateIngredientes);
-}
-let valorbase = 15000;
-let ingredientesextras = 800; 
 
+checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', () => updateIngredientes(3, 800, 15000, 1000));
+})
 
-function updateIngredientes() {
-    let selecionados = [];
-    let maximoIngredientes = 3; 
-    let costoIngredientes = 0; 
+function updateIngredientes(maximoIngredientes = 3, costoIngredienteExtra = 800, costoBase = 15000, propinaBase = 1000) {
+    let seleccionados = [];
+    let extras = [];
+    let costoExtra = 0;
 
-    for(let i = 0; i < checkboxes.length; i++) {
-        if(checkboxes[i].checked) {
-            if(selecionados.length < maximoIngredientes) {
-                selecionados.push(checkboxes[i].value || checkboxes[i].id);
-                costoIngredientes += ingredientesextras;
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            if (seleccionados.length < maximoIngredientes) {
+                seleccionados.push(checkbox.value || checkbox.id);
+            } else {
+                extras.push(checkbox.value || checkbox.id);
+                costoExtra += costoIngredienteExtra;
             }
         }
+    });
+
+    document.getElementById('ingredientesSeleccionados').textContent =
+        seleccionados.length > 0 ? seleccionados.join(", ") : "Ninguno";
+    document.getElementById('ingredientesExtras').textContent =
+        extras.length > 0 ? extras.join(", ") : "Ninguno";
+    document.getElementById('costoExtras').textContent = `Costo de ingredientes extras: $${costoExtra}`;
+
+    const propinaInput = document.getElementById('propinaTexto');
+    let propina = parseFloat(propinaInput.value);
+    if (isNaN(propina)) {
+        propina = propinaBase
     }
 
-    let ingredientes = ""; 
-    if (selecionados.length > 0) {
-        for (let i = 0; i < selecionados.length; i++) {
-            ingredientes += selecionados[i];
-            if(i < selecionados.length - 1) {
-                ingredientes += ", "
-            }
-            
-        }
-    } else {
-        ingredientes = "Ninguno";
+    const propinatexto = document.getElementById('propina2');
+    if(propinatexto) {
+        propinatexto.textContent = `Propina: $${propina}`
     }
-    const ingredientestexto = document.getElementById('ingredientesselecionados');
-    ingredientestexto.textContent = ingredientes;
+    let total = costoBase + costoExtra + propina;
+    document.getElementById('total').textContent = `Total: $${total}`;
 }
 
-// function ingredientesextras() {
-//     let extras = [];
-//     for (let i = 0; i < checkboxes.length; i++) {
-//         if(checkboxes[i].checked){
-//             extras.push(checkboxes[i].value || checkboxes[i].id);
-//         }
-//     }
-
-//     let extrastexto = "";
-//     if(extras.length > 0) {
-//         for(let i = 0; i < extras.length; i++){
-//             extrastexto += extras[i];
-//             if(i < extras.length - 1){
-//                 extrastexto += ", "
-//             }
-//         }
-//     } else {
-//         extrastexto = "Ninguno";
-//     }
-//     const ingredientesextrastexto = document.getElementById ('ingredientesextras');
-//     ingredientesextrastexto.textContent = ingredientesextras;
-//     return ingredientesextras;
-// }
+document.getElementById('propinaTexto').addEventListener('input', () => updateIngredientes(3, 800, 15000, 1000));
+document.getElementById('botonpropina').addEventListener('click', () => {
+    const propinaInput = document.getElementById('propinaTexto');
+    if (!propinaInput.value || parseFloat(propinaInput.value) === 0) {
+        propinaInput.value = 1000;
+    }
+    updateIngredientes(3, 800, 15000, 1000);
+    const propina = parseFloat(propinaInput.value) || 0;
+    alert(`Su propina de $${propina} ha sido enviada`)
+})
